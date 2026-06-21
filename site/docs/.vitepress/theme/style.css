@@ -59,7 +59,7 @@
   color: var(--vp-c-danger-1);
 }
 
-.contract-callout {
+.note-callout {
   padding: 16px 18px;
   margin: 24px 0;
   border: 1px solid var(--vp-c-brand-soft);
@@ -67,7 +67,7 @@
   background: var(--vp-c-brand-soft);
 }
 
-.contract-callout strong {
+.note-callout strong {
   color: var(--vp-c-brand-1);
 }
 

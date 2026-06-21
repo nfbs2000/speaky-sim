@@ -1,20 +1,11 @@
-# speaky-sim Pages
+# Sim Mothership Adapter Contract
 
-This branch hosts the Korean public contract notes for `nfbs2000/speaky-sim`.
+VitePress site for code-reading notes about `nfbs2000/speaky-sim`.
 
-## Local development
+## Commands
 
 ```bash
-cd site
 bun install
 bun run dev
-```
-
-## Build
-
-```bash
-cd site
 bun run build
 ```
-
-The GitHub Pages base path is `/speaky-sim/`, so local links should be tested through the VitePress dev server rather than by opening HTML files directly.

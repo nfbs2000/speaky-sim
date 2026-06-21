@@ -21,7 +21,7 @@ export default defineConfig({
   lang: 'ko-KR',
   title: 'Sim Mothership Adapter Contract',
   description:
-    'nfbs2000/speaky-sim fork에서 공개 소스로 확인 가능한 Mothership adapter contract 분석',
+    'Code notes for request, stream, tool execution, and projection paths in nfbs2000/speaky-sim',
   cleanUrls: true,
   lastUpdated: true,
   head: [
@@ -33,7 +33,7 @@ export default defineConfig({
       {
         property: 'og:description',
         content:
-          '공개 Sim-side adapter 코드로 읽는 request, stream, tool bridge, persistence contract',
+          'Code notes for request payloads, Stream v1 events, tool execution, persistence projection, and compatibility',
       },
     ],
   ],
@@ -51,30 +51,31 @@ export default defineConfig({
     },
   },
   themeConfig: {
-    siteTitle: 'Mothership Contract',
+    siteTitle: 'Mothership Adapter',
     outline: {
       level: [2, 3],
       label: '이 페이지',
     },
     nav: [
       { text: '개요', link: '/' },
-      { text: '계약 문서', link: '/mothership-contract/' },
+      { text: 'Adapter Map', link: '/mothership-contract/' },
       { text: 'GitHub', link: repo },
     ],
     sidebar: {
       '/mothership-contract/': [
         {
-          text: 'Mothership Contract',
+          text: 'Adapter Contract',
           items: [
-            { text: '전체 개요', link: '/mothership-contract/' },
-            { text: '1. 공개 범위와 경계', link: '/mothership-contract/01-scope-and-boundary' },
-            { text: '2. 코드 지도', link: '/mothership-contract/02-source-map' },
-            { text: '3. 요청 계약', link: '/mothership-contract/03-request-contract' },
-            { text: '4. Stream v1 계약', link: '/mothership-contract/04-stream-v1-contract' },
-            { text: '5. Tool Bridge', link: '/mothership-contract/05-tool-execution-bridge' },
-            { text: '6. 저장과 재생', link: '/mothership-contract/06-persistence-and-replay' },
-            { text: '7. Workflow Block 계약', link: '/mothership-contract/07-workflow-block-contract' },
-            { text: '8. 테스트 매트릭스', link: '/mothership-contract/08-test-matrix' },
+            { text: 'Adapter Map', link: '/mothership-contract/' },
+            { text: '1. Adapter Identity', link: '/mothership-contract/01-adapter-identity' },
+            { text: '2. Request Payload', link: '/mothership-contract/02-request-payload' },
+            { text: '3. Stream v1', link: '/mothership-contract/03-stream-v1' },
+            { text: '4. Tool Execution Bridge', link: '/mothership-contract/04-tool-execution-bridge' },
+            { text: '5. Persistence Projection', link: '/mothership-contract/05-persistence-projection' },
+            { text: '6. Role / Permission Projection', link: '/mothership-contract/06-role-projection' },
+            { text: '7. Completion Gaps', link: '/mothership-contract/07-completion-gaps' },
+            { text: '8. Audit / Observability', link: '/mothership-contract/08-audit-observability' },
+            { text: '9. Compatibility Matrix', link: '/mothership-contract/09-compatibility-matrix' },
           ],
         },
       ],
@@ -84,9 +85,8 @@ export default defineConfig({
     },
     socialLinks: [{ icon: 'github', link: repo }],
     footer: {
-      message:
-        'Independent public-source notes for nfbs2000/speaky-sim. Not an official SimStudio document.',
-      copyright: `Analyzed source snapshot: ${analyzedCommit}`,
+      message: 'Code reading notes for nfbs2000/speaky-sim.',
+      copyright: `Source snapshot: ${analyzedCommit}`,
     },
     editLink: {
       pattern: `${repo}/edit/pages-src/site/docs/:path`,
