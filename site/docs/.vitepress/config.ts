@@ -59,7 +59,6 @@ export default defineConfig({
     nav: [
       { text: '개요', link: '/' },
       { text: '계약 문서', link: '/mothership-contract/' },
-      { text: '업스트림 동기화', link: '/mothership-contract/09-upstream-sync' },
       { text: 'GitHub', link: repo },
     ],
     sidebar: {
@@ -76,7 +75,6 @@ export default defineConfig({
             { text: '6. 저장과 재생', link: '/mothership-contract/06-persistence-and-replay' },
             { text: '7. Workflow Block 계약', link: '/mothership-contract/07-workflow-block-contract' },
             { text: '8. 테스트 매트릭스', link: '/mothership-contract/08-test-matrix' },
-            { text: '9. Upstream Sync', link: '/mothership-contract/09-upstream-sync' },
           ],
         },
       ],

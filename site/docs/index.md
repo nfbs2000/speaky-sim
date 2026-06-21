@@ -53,7 +53,6 @@ flowchart TD
 - [저장과 재생](/mothership-contract/06-persistence-and-replay)
 - [Workflow Block 계약](/mothership-contract/07-workflow-block-contract)
 - [테스트 매트릭스](/mothership-contract/08-test-matrix)
-- [Upstream Sync](/mothership-contract/09-upstream-sync)
 
 ## 공개 고지
 

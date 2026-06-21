@@ -91,5 +91,4 @@ flowchart LR
   Tool --> Persist["6. 저장/재생"]
   Persist --> Block["7. Workflow Block"]
   Block --> Tests["8. 테스트"]
-  Tests --> Sync["9. Upstream Sync"]
 ```

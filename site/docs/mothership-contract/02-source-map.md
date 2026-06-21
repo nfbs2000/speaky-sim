@@ -69,6 +69,6 @@ flowchart TD
   SourceSchema["Go-side schema/catalog<br/>외부 contract source"] --> Generator["sync/generate scripts"]
   Generator --> GeneratedFiles["apps/sim/lib/copilot/generated"]
   GeneratedFiles --> Check["mship:check"]
-  Check --> Pass["동기화됨"]
+  Check --> Pass["생성물 최신"]
   Check --> Fail["stale contract"]
 ```
