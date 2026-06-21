@@ -4,6 +4,14 @@
   --vp-c-brand-3: #2f9eb0;
   --vp-c-brand-soft: rgba(23, 107, 135, 0.14);
   --vp-home-hero-name-color: #176b87;
+  --diagram-bg: #f8fafc;
+  --diagram-border: #cbd5e1;
+  --diagram-text: #111827;
+  --diagram-muted: #334155;
+  --diagram-line: #334155;
+  --diagram-node: #ffffff;
+  --diagram-node-border: #176b87;
+  --diagram-edge-label-bg: #f8fafc;
   --vp-font-family-base: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
 }
@@ -13,10 +21,32 @@
   --vp-c-brand-2: #47b4c5;
   --vp-c-brand-3: #2993a8;
   --vp-c-brand-soft: rgba(118, 209, 223, 0.18);
+  --diagram-bg: #151922;
+  --diagram-border: #374151;
+  --diagram-text: #f8fafc;
+  --diagram-muted: #e2e8f0;
+  --diagram-line: #e2e8f0;
+  --diagram-node: #202838;
+  --diagram-node-border: #67e8f9;
+  --diagram-edge-label-bg: #151922;
 }
 
 .VPDoc .content {
   max-width: 920px;
+}
+
+@media (min-width: 960px) {
+  .VPDoc.has-aside .aside {
+    display: none !important;
+  }
+
+  .VPDoc.has-aside .content {
+    padding-right: 0 !important;
+  }
+
+  .VPDoc.has-aside .content-container {
+    max-width: 980px !important;
+  }
 }
 
 .vp-doc h1 {
@@ -42,16 +72,92 @@
   margin: 24px 0;
   padding: 18px;
   overflow-x: auto;
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--diagram-border);
   border-radius: 8px;
-  background: var(--vp-c-bg-soft);
+  background: var(--diagram-bg);
+  color: var(--diagram-text);
 }
 
 .mermaid svg {
   display: block;
-  max-width: 100%;
+  min-width: 760px;
+  max-width: none;
   height: auto;
   margin: 0 auto;
+  color: var(--diagram-text);
+  font-size: 15px;
+  text-rendering: geometricPrecision;
+}
+
+.mermaid svg text,
+.mermaid svg .nodeLabel,
+.mermaid svg .edgeLabel,
+.mermaid svg .edgeLabel span,
+.mermaid svg .edgeLabel p,
+.mermaid svg .messageText,
+.mermaid svg .actor,
+.mermaid svg .label,
+.mermaid svg .loopText,
+.mermaid svg .noteText {
+  color: var(--diagram-text) !important;
+  fill: var(--diagram-text) !important;
+}
+
+.mermaid svg .edgeLabel,
+.mermaid svg .edgeLabel p,
+.mermaid svg .edgeLabel span,
+.mermaid svg .labelBkg,
+.mermaid svg .labelBox {
+  background-color: var(--diagram-edge-label-bg) !important;
+}
+
+.mermaid svg .edgeLabel rect,
+.mermaid svg .labelBkg,
+.mermaid svg .labelBox {
+  fill: var(--diagram-edge-label-bg) !important;
+  opacity: 0.96 !important;
+}
+
+.mermaid svg .edgePath .path,
+.mermaid svg .flowchart-link,
+.mermaid svg .messageLine0,
+.mermaid svg .messageLine1,
+.mermaid svg .loopLine,
+.mermaid svg .actor-line {
+  stroke: var(--diagram-line) !important;
+}
+
+.mermaid svg marker path,
+.mermaid svg marker polygon {
+  fill: var(--diagram-line) !important;
+  stroke: var(--diagram-line) !important;
+}
+
+.mermaid svg .node rect,
+.mermaid svg .node circle,
+.mermaid svg .node ellipse,
+.mermaid svg .node polygon,
+.mermaid svg .node path,
+.mermaid svg .actor {
+  fill: var(--diagram-node) !important;
+  stroke: var(--diagram-node-border) !important;
+}
+
+@media (max-width: 760px) {
+  .mermaid {
+    padding: 14px;
+  }
+
+  .mermaid svg {
+    min-width: 640px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mermaid svg {
+    min-width: 100%;
+    max-width: 100%;
+  }
 }
 
 .mermaid-error {

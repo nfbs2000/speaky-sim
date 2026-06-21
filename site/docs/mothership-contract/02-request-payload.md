@@ -10,15 +10,15 @@
 sequenceDiagram
   participant UI
   participant Route as /api/mothership/chat
-  participant Builder as buildCopilotRequestPayload
-  participant Tools as buildIntegrationToolSchemas
-  participant Upload as trackChatUpload
+  participant Builder as Payload Builder
+  participant Tools as Tool Schemas
+  participant Upload as Upload Tracker
 
   UI->>Route: message, chatId, workspaceId
   Route->>Builder: BuildPayloadParams
-  Builder->>Upload: file attachment metadata
-  Builder->>Tools: integration tool schemas
-  Tools-->>Builder: tool schema list
+  Builder->>Upload: file metadata
+  Builder->>Tools: integration schemas
+  Tools-->>Builder: schema list
   Builder-->>Route: request payload
 ```
 
@@ -30,15 +30,15 @@ sequenceDiagram
 sequenceDiagram
   participant Handler as Block Handler
   participant Route as Execute Route
-  participant Auth as checkInternalAuth
-  participant Contract as parseRequest
-  participant Context as workspace context
-  participant Lifecycle as headless lifecycle
+  participant Auth as Internal Auth
+  participant Contract as Body Contract
+  participant Context as Context Builder
+  participant Lifecycle as Headless Lifecycle
 
-  Handler->>Route: messages, files, workflow metadata
+  Handler->>Route: messages, files, metadata
   Route->>Auth: internal JWT
   Route->>Contract: mothershipExecuteContract
-  Route->>Context: workspace/tool/permission context
+  Route->>Context: workspace/tool/permission
   Route->>Lifecycle: requestPayload
 ```
 
