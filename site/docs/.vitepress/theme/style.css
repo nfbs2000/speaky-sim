@@ -1,0 +1,77 @@
+:root {
+  --vp-c-brand-1: #176b87;
+  --vp-c-brand-2: #1f7a8c;
+  --vp-c-brand-3: #2f9eb0;
+  --vp-c-brand-soft: rgba(23, 107, 135, 0.14);
+  --vp-home-hero-name-color: #176b87;
+  --vp-font-family-base: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.dark {
+  --vp-c-brand-1: #76d1df;
+  --vp-c-brand-2: #47b4c5;
+  --vp-c-brand-3: #2993a8;
+  --vp-c-brand-soft: rgba(118, 209, 223, 0.18);
+}
+
+.VPDoc .content {
+  max-width: 920px;
+}
+
+.vp-doc h1 {
+  letter-spacing: 0;
+}
+
+.vp-doc h2 {
+  margin-top: 40px;
+}
+
+.vp-doc table {
+  display: table;
+  width: 100%;
+  font-size: 14px;
+}
+
+.vp-doc th,
+.vp-doc td {
+  vertical-align: top;
+}
+
+.mermaid {
+  margin: 24px 0;
+  padding: 18px;
+  overflow-x: auto;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.mermaid-error {
+  white-space: pre-wrap;
+  color: var(--vp-c-danger-1);
+}
+
+.contract-callout {
+  padding: 16px 18px;
+  margin: 24px 0;
+  border: 1px solid var(--vp-c-brand-soft);
+  border-radius: 8px;
+  background: var(--vp-c-brand-soft);
+}
+
+.contract-callout strong {
+  color: var(--vp-c-brand-1);
+}
+
+.small-note {
+  color: var(--vp-c-text-2);
+  font-size: 14px;
+}

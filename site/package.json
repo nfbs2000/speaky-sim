@@ -1,0 +1,17 @@
+{
+  "name": "speaky-sim-pages",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs --host 127.0.0.1 --port 5175",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs --host 127.0.0.1 --port 4175"
+  },
+  "devDependencies": {
+    "@types/node": "22.14.1",
+    "mermaid": "11.15.0",
+    "typescript": "5.8.2",
+    "vitepress": "1.6.4"
+  }
+}
