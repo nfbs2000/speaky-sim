@@ -1,10 +1,10 @@
-# 10. AG-UI Positioning
+# 10. AG-UI 포지셔닝
 
-AG-UI should be added as a projection layer, not as the owner of the Mothership runtime.
+AG-UI는 Mothership runtime의 주인이 아니라 projection layer로 붙어야 합니다.
 
-The runtime contract in this repo is still [`MothershipStreamV1`](https://github.com/nfbs2000/speaky-sim/blob/db47da58d/apps/sim/lib/copilot/generated/mothership-stream-v1.ts). AG-UI is useful because it gives outside clients a standard way to render agent runs, tool calls, state updates, activity, and human-in-the-loop pauses.
+이 repo의 canonical runtime contract는 여전히 [`MothershipStreamV1`](https://github.com/nfbs2000/speaky-sim/blob/db47da58d/apps/sim/lib/copilot/generated/mothership-stream-v1.ts)입니다. AG-UI가 유용한 이유는 agent run, tool call, state update, activity, human-in-the-loop pause를 외부 client가 표준 방식으로 렌더링할 수 있게 해주기 때문입니다.
 
-## Protocol Roles
+## 프로토콜 역할
 
 ```mermaid
 flowchart LR
@@ -16,28 +16,28 @@ flowchart LR
   Adapter --> UI["AG-UI client / CopilotKit / custom UI"]
 ```
 
-| Layer | Owns | Should not own |
+| 계층 | 책임지는 것 | 책임지면 안 되는 것 |
 | --- | --- | --- |
-| model | choosing tool calls and producing text | UI state, browser rendering, durable tool result persistence |
+| model | tool call 선택, assistant text 생성 | UI state, browser rendering, durable tool result persistence |
 | Mothership runtime | run loop, checkpoint, resume, tool result ownership | visual component layout |
-| Sim tool executor | Sim-side tool execution and normalized result reporting | model planning |
-| AG-UI projection | UI-facing event shape and client interoperability | canonical runtime state |
-| CopilotKit or custom UI | rendering, input capture, optional frontend interaction | swallowing tool results before Mothership can resume |
+| Sim tool executor | Sim-side tool 실행, normalized result reporting | model planning |
+| AG-UI projection | UI-facing event shape, client interoperability | canonical runtime state |
+| CopilotKit 또는 custom UI | rendering, input capture, 선택적 frontend interaction | Mothership이 resume하기 전에 tool result를 삼키는 것 |
 
-## Why AG-UI Fits
+## 왜 AG-UI가 맞는가
 
-AG-UI describes itself as a lightweight event-based protocol for connecting agents to user-facing applications. Its standard event families include lifecycle, text messages, tool calls, state management, activity, raw, and custom events.
+AG-UI는 agent와 user-facing application을 연결하기 위한 lightweight event-based protocol입니다. 표준 event family는 lifecycle, text message, tool call, state management, activity, raw, custom event를 포함합니다.
 
-Relevant references:
+관련 근거:
 
 - [AG-UI README](https://github.com/ag-ui-protocol/ag-ui)
 - [AG-UI Core architecture](https://docs.ag-ui.com/concepts/architecture.md)
 - [AG-UI Events](https://docs.ag-ui.com/concepts/events.md)
 - [AG-UI Interrupts](https://docs.ag-ui.com/concepts/interrupts.md)
 
-That maps well to Mothership because the existing stream already has stable event families:
+이 구조는 Mothership과 잘 맞습니다. 기존 stream에 이미 안정적인 event family가 있기 때문입니다.
 
-| Mothership event | Existing meaning |
+| Mothership event | 기존 의미 |
 | --- | --- |
 | `session` | start, chat id, title, trace metadata |
 | `text` | assistant or thinking text |
@@ -48,9 +48,9 @@ That maps well to Mothership because the existing stream already has stable even
 | `error` | terminal error data |
 | `complete` | terminal completion data |
 
-## Boundary Rule
+## 경계 규칙
 
-The canonical stream should remain MothershipStreamV1.
+canonical stream은 `MothershipStreamV1`로 유지해야 합니다.
 
 ```mermaid
 flowchart TD
@@ -61,23 +61,23 @@ flowchart TD
   Agui --> ExternalUI["external clients"]
 ```
 
-The adapter can emit AG-UI events, but it should preserve `rawEvent` or equivalent metadata so a client can trace every AG-UI event back to the original Mothership envelope.
+adapter는 AG-UI event를 emit할 수 있습니다. 다만 모든 AG-UI event가 원본 Mothership envelope로 되돌아갈 수 있도록 `rawEvent` 또는 동등한 metadata를 보존해야 합니다.
 
-## CopilotKit Position
+## CopilotKit의 위치
 
-CopilotKit can be one AG-UI client. It should not become the runtime boundary.
+CopilotKit은 AG-UI client 중 하나가 될 수 있습니다. 하지만 runtime boundary가 되면 안 됩니다.
 
-The safe positioning is:
+안전한 배치는 다음 순서입니다.
 
-1. Mothership decides and runs.
-2. Sim executes Sim-owned tools and records results.
-3. AG-UI translates the stream into standard UI events.
-4. CopilotKit or another client renders those events.
+1. Mothership이 판단하고 실행합니다.
+2. Sim이 Sim-owned tool을 실행하고 result를 기록합니다.
+3. AG-UI가 stream을 표준 UI event로 번역합니다.
+4. CopilotKit 또는 다른 client가 그 event를 렌더링합니다.
 
-This keeps the agent loop intact while allowing existing UI to become interactive.
+이 구조는 agent loop를 보존하면서 기존 UI를 interactive하게 만들 수 있습니다.
 
-## Practical Test
+## 실전 판별법
 
-If removing AG-UI still lets Mothership run, resume, persist, and replay correctly, the boundary is healthy.
+AG-UI를 제거해도 Mothership이 run, resume, persist, replay를 정상 수행한다면 경계가 건강한 것입니다.
 
-If removing AG-UI breaks tool result delivery, checkpoint resume, or run completion, AG-UI has been placed too deep in the runtime.
+AG-UI를 제거했을 때 tool result delivery, checkpoint resume, run completion이 깨진다면 AG-UI가 runtime 내부에 너무 깊게 들어간 것입니다.

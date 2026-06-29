@@ -1,8 +1,8 @@
-# Mothership Adapter Map
+# Mothership Adapter 지도
 
 코드에서 보이는 Mothership은 하나의 함수가 아니라 adapter 묶음입니다. route, payload builder, generated stream type, stream loop, tool executor, DB projection, workflow block handler가 연결됩니다.
 
-AG-UI는 이 runtime을 대체하지 않고, MothershipStreamV1을 user-facing protocol로 투영하는 계층으로 붙이는 것이 맞습니다.
+AG-UI는 이 runtime을 대체하지 않고, `MothershipStreamV1`을 user-facing protocol로 투영하는 계층으로 붙이는 것이 맞습니다.
 
 ## Adapter Stack
 
@@ -21,7 +21,7 @@ flowchart TB
   Execute --> Payload
 ```
 
-## Main Files
+## 주요 파일
 
 | Layer | Code |
 | --- | --- |
@@ -39,7 +39,7 @@ flowchart TB
 | block handler | [`apps/sim/executor/handlers/mothership/mothership-handler.ts`](https://github.com/nfbs2000/speaky-sim/blob/db47da58d/apps/sim/executor/handlers/mothership/mothership-handler.ts) |
 | DB tables | [`packages/db/schema.ts`](https://github.com/nfbs2000/speaky-sim/blob/db47da58d/packages/db/schema.ts) |
 
-## Request To Projection
+## Request에서 Projection까지
 
 ```mermaid
 sequenceDiagram
@@ -61,7 +61,7 @@ sequenceDiagram
   Route-->>Client: stream update or final JSON
 ```
 
-## Reading Order
+## 읽는 순서
 
 ```mermaid
 flowchart LR
@@ -79,9 +79,9 @@ flowchart LR
   L --> M["13. Implementation Plan"]
 ```
 
-## AG-UI Projection Pages
+## AG-UI Projection 페이지
 
-- [10. AG-UI Positioning](/mothership-contract/10-agui-positioning)
-- [11. AG-UI Event Mapping](/mothership-contract/11-agui-event-map)
-- [12. Tool Result Ownership](/mothership-contract/12-tool-result-ownership)
-- [13. AG-UI Implementation Plan](/mothership-contract/13-agui-implementation-plan)
+- [10. AG-UI 포지셔닝](/mothership-contract/10-agui-positioning)
+- [11. AG-UI 이벤트 매핑](/mothership-contract/11-agui-event-map)
+- [12. Tool Result 소유권](/mothership-contract/12-tool-result-ownership)
+- [13. AG-UI 구현 계획](/mothership-contract/13-agui-implementation-plan)
