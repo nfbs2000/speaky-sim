@@ -85,3 +85,16 @@ flowchart LR
 - [11. AG-UI 이벤트 매핑](/mothership-contract/11-agui-event-map)
 - [12. Tool Result 소유권](/mothership-contract/12-tool-result-ownership)
 - [13. AG-UI 구현 계획](/mothership-contract/13-agui-implementation-plan)
+
+## AG-UI 설계 요약
+
+| 주제 | 결정 |
+| --- | --- |
+| runtime boundary | `MothershipStreamV1`이 canonical contract입니다. |
+| AG-UI 역할 | canonical event를 UI/client protocol로 투영합니다. |
+| CopilotKit 역할 | 가능한 AG-UI client 중 하나입니다. runtime owner가 아닙니다. |
+| tool result | UI가 렌더링할 수 있지만 Mothership run loop가 소유합니다. |
+| checkpoint | user input이 필요한 경우만 AG-UI interrupt로 올립니다. |
+| 구현 순서 | docs/sample -> pure mapper -> read-only stream -> run endpoint -> UI integration |
+
+이 결정은 현재 코드의 [`runCheckpointLoop`](https://github.com/nfbs2000/speaky-sim/blob/db47da58d/apps/sim/lib/copilot/request/lifecycle/run.ts#L238), [`handleToolEvent`](https://github.com/nfbs2000/speaky-sim/blob/db47da58d/apps/sim/lib/copilot/request/handlers/tool.ts#L117), [`runStreamLoop`](https://github.com/nfbs2000/speaky-sim/blob/db47da58d/apps/sim/lib/copilot/request/go/stream.ts)를 기준으로 잡은 것입니다.
