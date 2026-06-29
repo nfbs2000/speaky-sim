@@ -2,12 +2,13 @@
 
 `nfbs2000/speaky-sim` 코드에서 확인되는 Mothership adapter 흐름을 정리한 문서입니다.
 
-읽는 축은 네 가지입니다.
+읽는 축은 다섯 가지입니다.
 
 1. request: route가 어떤 body를 받고 payload를 어떻게 조립하는가
 2. stream: event가 어떤 형태로 들어오고 어떻게 dispatch되는가
 3. tool: tool call이 Sim 쪽 executor와 어떻게 연결되는가
 4. projection: stream 결과가 DB, UI, workflow output, usage 관점으로 어떻게 남는가
+5. AG-UI: Mothership stream을 표준 UI protocol로 어떻게 투영할 수 있는가
 
 ## Overview
 
@@ -19,6 +20,7 @@ flowchart LR
   Stream --> Dispatcher["Session / Tool Handlers"]
   Dispatcher --> Tools["Sim Tool Executor"]
   Dispatcher --> Projection["DB / UI / Run Projection"]
+  Projection --> Agui["AG-UI Projection"]
   Tools --> Projection
 ```
 
@@ -35,6 +37,7 @@ flowchart TD
   Stream --> Handlers["apps/sim/lib/copilot/request/handlers"]
   Handlers --> ToolExec["apps/sim/lib/copilot/tool-executor"]
   Handlers --> Db["packages/db/schema.ts"]
+  Stream --> Agui["future apps/sim/lib/copilot/agui"]
   Block["apps/sim/blocks/blocks/mothership.ts"] --> BlockHandler["apps/sim/executor/handlers/mothership"]
   BlockHandler --> Routes
 ```
@@ -50,6 +53,10 @@ flowchart TD
 - [7. Completion Gaps](/mothership-contract/07-completion-gaps)
 - [8. Audit / Observability](/mothership-contract/08-audit-observability)
 - [9. Compatibility Matrix](/mothership-contract/09-compatibility-matrix)
+- [10. AG-UI Positioning](/mothership-contract/10-agui-positioning)
+- [11. AG-UI Event Mapping](/mothership-contract/11-agui-event-map)
+- [12. Tool Result Ownership](/mothership-contract/12-tool-result-ownership)
+- [13. AG-UI Implementation Plan](/mothership-contract/13-agui-implementation-plan)
 
 ## Snapshot
 

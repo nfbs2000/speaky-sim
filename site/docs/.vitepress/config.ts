@@ -21,7 +21,7 @@ export default defineConfig({
   lang: 'ko-KR',
   title: 'Sim Mothership Adapter Contract',
   description:
-    'Code notes for request, stream, tool execution, and projection paths in nfbs2000/speaky-sim',
+    'Code notes for Mothership request, stream, tool execution, projection, and AG-UI adapter paths in nfbs2000/speaky-sim',
   cleanUrls: true,
   lastUpdated: true,
   head: [
@@ -33,7 +33,7 @@ export default defineConfig({
       {
         property: 'og:description',
         content:
-          'Code notes for request payloads, Stream v1 events, tool execution, persistence projection, and compatibility',
+          'Code notes for request payloads, Stream v1 events, tool execution, persistence projection, AG-UI mapping, and compatibility',
       },
     ],
   ],
@@ -59,6 +59,7 @@ export default defineConfig({
     nav: [
       { text: '개요', link: '/' },
       { text: 'Adapter Map', link: '/mothership-contract/' },
+      { text: 'AG-UI Projection', link: '/mothership-contract/10-agui-positioning' },
       { text: 'GitHub', link: repo },
     ],
     sidebar: {
@@ -76,6 +77,18 @@ export default defineConfig({
             { text: '7. Completion Gaps', link: '/mothership-contract/07-completion-gaps' },
             { text: '8. Audit / Observability', link: '/mothership-contract/08-audit-observability' },
             { text: '9. Compatibility Matrix', link: '/mothership-contract/09-compatibility-matrix' },
+          ],
+        },
+        {
+          text: 'AG-UI Projection',
+          items: [
+            { text: '10. AG-UI Positioning', link: '/mothership-contract/10-agui-positioning' },
+            { text: '11. Event Mapping', link: '/mothership-contract/11-agui-event-map' },
+            {
+              text: '12. Tool Result Ownership',
+              link: '/mothership-contract/12-tool-result-ownership',
+            },
+            { text: '13. Implementation Plan', link: '/mothership-contract/13-agui-implementation-plan' },
           ],
         },
       ],
